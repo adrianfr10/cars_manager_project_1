@@ -1,0 +1,33 @@
+[
+  {
+    "model": "BMW",
+    "price": 160000.0,
+    "color": "BLACK",
+    "mileage": 1500,
+    "components": [
+      "ABS",
+      "ALLOY WHEELS"
+    ]
+  },
+  {
+    "model": "MAZDA",
+    "price": 120000.0,
+    "color": "WHITE",
+    "mileage": 2500,
+    "components": [
+      "AIR CONDITIONING",
+      "BLUETOOTH"
+    ]
+  },
+
+    {
+    "model": "FIAT",
+    "price": 140000.0,
+    "color": "WHITE",
+    "mileage": 2500,
+    "components": [
+      "AIR CONDITIONING",
+      "BLUETOOTH"
+    ]
+  }
+]
