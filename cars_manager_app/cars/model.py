@@ -18,3 +18,6 @@ class Car:
                    data['color'],
                    int(data['mileage']),
                    data['components'])
+
+    def has_mileage_greater_than(self, limit_mileage: int) -> bool:
+        return self.mileage > limit_mileage

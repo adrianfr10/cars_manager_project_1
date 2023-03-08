@@ -1,5 +1,6 @@
 from .model import Car
 from .enums import Sort
+from .exception.cars import CarsServiceException
 
 
 class CarsService:
@@ -25,3 +26,14 @@ class CarsService:
                 return sorted(self.cars, key=lambda car: car.model, reverse=descending)
             case Sort.PRICE:
                 return sorted(self.cars, key=lambda car: car.price, reverse=descending)
+
+    def get_cars_with_mileage_greater_than(self, mileage: int) -> list[Car]:
+        """
+        Method returns a list of Car objects with mileage greater than value given as an argument.
+        :param mileage:
+        :return:
+        """
+        if mileage <= 0:
+            raise CarsServiceException('Mileage value must be positive')
+
+        return [car for car in self.cars if car.has_mileage_greater_than(mileage)]
