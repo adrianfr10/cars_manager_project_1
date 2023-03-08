@@ -2,6 +2,8 @@ from .model import Car
 from .enums import Sort
 from .exception.cars import CarsServiceException
 
+from collections import Counter
+
 
 class CarsService:
 
@@ -37,3 +39,11 @@ class CarsService:
             raise CarsServiceException('Mileage value must be positive')
 
         return [car for car in self.cars if car.has_mileage_greater_than(mileage)]
+
+    def count_cars_with_color(self) -> dict[str, int]:
+        """
+        Method counts how many Car objects have certain color and returns a dict with key - color
+         and value - count of Car object of that color.
+        :return:
+        """
+        return dict(Counter([car.color for car in self.cars]))
