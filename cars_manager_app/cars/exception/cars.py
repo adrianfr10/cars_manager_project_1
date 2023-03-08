@@ -1,0 +1,2 @@
+class CarsServiceException(Exception):
+    pass
