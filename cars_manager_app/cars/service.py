@@ -2,7 +2,7 @@ from .model import Car
 from .enums import Sort
 from .exception.cars import CarsServiceException
 
-from collections import Counter
+from collections import Counter, defaultdict
 
 
 class CarsService:
@@ -11,6 +11,7 @@ class CarsService:
         self.cars = cars
 
     # -----------------------------------------------------------------------------------------------
+
     def sort(self, sort: Sort, descending: bool) -> list[Car]:
         """
         Method sorts a collection of Car objects, color, mileage, price or model wise, according to
@@ -29,6 +30,8 @@ class CarsService:
             case Sort.PRICE:
                 return sorted(self.cars, key=lambda car: car.price, reverse=descending)
 
+    # -----------------------------------------------------------------------------------------------
+
     def get_cars_with_mileage_greater_than(self, mileage: int) -> list[Car]:
         """
         Method returns a list of Car objects with mileage greater than value given as an argument.
@@ -40,6 +43,8 @@ class CarsService:
 
         return [car for car in self.cars if car.has_mileage_greater_than(mileage)]
 
+    # -----------------------------------------------------------------------------------------------
+
     def count_cars_with_color(self) -> dict[str, int]:
         """
         Method counts how many Car objects have certain color and returns a dict with key - color
@@ -47,3 +52,28 @@ class CarsService:
         :return:
         """
         return dict(Counter([car.color for car in self.cars]))
+
+    # -----------------------------------------------------------------------------------------------
+
+    def get_most_expensive_cars_per_model(self) -> dict[str, list[Car]]:
+        """
+        Method returns a dict of Car objects, with key - Car model and value - most expensive
+        Car objects from certain model.
+        :return:
+        """
+        grouped_by_model = defaultdict(list)
+        for car in self.cars:
+            grouped_by_model[car.model].append(car)
+
+        color_with_most_expensive_cars = []
+        for color, cars in grouped_by_model.items():
+            grouped_by_price = defaultdict(list)
+            for car in cars:
+                grouped_by_price[car.price].append(car)
+                max_price_cars = max(grouped_by_price.items(), key=lambda pair: pair[0])[1]
+                color_with_most_expensive_cars.append((color, max_price_cars))
+        return dict(color_with_most_expensive_cars)
+
+    # -----------------------------------------------------------------------------------------------
+
+
