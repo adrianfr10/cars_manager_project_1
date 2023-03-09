@@ -1,8 +1,9 @@
 from .model import Car
-from .enums import Sort
+from .enums import Sort, Statistics
 from .exception.cars import CarsServiceException
 
 from collections import Counter, defaultdict
+from statistics import mean
 
 
 class CarsService:
@@ -76,4 +77,18 @@ class CarsService:
 
     # -----------------------------------------------------------------------------------------------
 
+    def get_car_statistics(self, statistics_type: Statistics) -> dict[Statistics, dict]:
+        """
+        Method returns a dict of statistics of a Car objects collection that include average, max
+        and min value for price and mileage.
+        :return:
+        """
+
+        return {
+            statistics_type: {
+                "avg": mean([getattr(car, statistics_type.value) for car in self.cars]),
+                "max": max([getattr(car, statistics_type.value) for car in self.cars]),
+                "min": min([getattr(car, statistics_type.value) for car in self.cars])
+            }
+        }
 

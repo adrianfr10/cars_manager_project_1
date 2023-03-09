@@ -6,3 +6,8 @@ class Sort(Enum):
     MILEAGE = 2
     MODEL = 3
     PRICE = 4
+
+
+class Statistics(Enum):
+    PRICE = "price"
+    MILEAGE = "mileage"
