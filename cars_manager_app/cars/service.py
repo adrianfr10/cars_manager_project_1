@@ -92,8 +92,8 @@ class CarsService:
                 "min": min([getattr(car, statistics_type.value) for car in self.cars])
             }
         }
-    # -----------------------------------------------------------------------------------------------
 
+    # -----------------------------------------------------------------------------------------------
     def get_cars_with_sorted_components(self) -> list[Car]:
         """
         Method returns a list of Car objects with alphabetically sorted components.
@@ -113,3 +113,16 @@ class CarsService:
             raise ValueError('Price range is not correct')
 
         return [car for car in self.cars if car.has_price_within_range(price_min, price_max)]
+
+    # -----------------------------------------------------------------------------------------------
+    def get_most_expensive(self) -> list[Car]:
+        """
+        Method returns a list of Car object(s) of the highest price out of all objects in a collection.
+        :return:
+        """
+        grouped_by_price = defaultdict(list)
+
+        for car in self.cars:
+            grouped_by_price[car.price].append(car)
+        max_price = max(grouped_by_price.keys())
+        return [v for k, v in grouped_by_price.items() if k == max_price][0]
