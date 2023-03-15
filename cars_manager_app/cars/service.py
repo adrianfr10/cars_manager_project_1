@@ -3,6 +3,7 @@ from .enums import Sort, Statistics
 from .exception.cars import CarsServiceException
 
 from collections import Counter, defaultdict
+from decimal import Decimal
 from statistics import mean
 
 
@@ -100,3 +101,15 @@ class CarsService:
         """
         return [car.with_sorted_components() for car in self.cars]
 
+    # -----------------------------------------------------------------------------------------------
+    def get_cars_with_price_within_range(self, price_min: Decimal, price_max: Decimal) -> list[Car]:
+        """
+        Method returns a list of Car objects that have a price parameter in range of a given min and max value.
+        :param price_min:
+        :param price_max:
+        :return:
+        """
+        if price_min <= Decimal('0') or price_min > price_max:
+            raise ValueError('Price range is not correct')
+
+        return [car for car in self.cars if car.has_price_within_range(price_min, price_max)]
