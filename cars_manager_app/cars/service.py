@@ -91,4 +91,12 @@ class CarsService:
                 "min": min([getattr(car, statistics_type.value) for car in self.cars])
             }
         }
+    # -----------------------------------------------------------------------------------------------
+
+    def get_cars_with_sorted_components(self) -> list[Car]:
+        """
+        Method returns a list of Car objects with alphabetically sorted components.
+        :return:
+        """
+        return [car.with_sorted_components() for car in self.cars]
 
