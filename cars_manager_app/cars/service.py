@@ -4,6 +4,7 @@ from .exception.cars import CarsServiceException
 
 from collections import Counter, defaultdict
 from decimal import Decimal
+from itertools import chain
 from statistics import mean
 
 
@@ -126,3 +127,17 @@ class CarsService:
             grouped_by_price[car.price].append(car)
         max_price = max(grouped_by_price.keys())
         return [v for k, v in grouped_by_price.items() if k == max_price][0]
+
+    # -----------------------------------------------------------------------------------------------
+
+    def get_cars_per_components(self) -> dict[str, list[Car]]:
+        """
+        Method returns a dict of Car object, with key - component, and value - list of Car object with that component.
+        :return:
+        """
+        grouped_by_components = defaultdict(list)
+        components = list(set((chain(*[car.components for car in self.cars]))))
+        for car in self.cars:
+            [grouped_by_components[components[i]].append(car) for i in range(len(components)) if
+             components[i] in car.components]
+        return dict(grouped_by_components)
