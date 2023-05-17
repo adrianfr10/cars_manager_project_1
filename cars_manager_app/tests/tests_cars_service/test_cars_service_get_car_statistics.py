@@ -1,22 +1,16 @@
-import os
 import unittest
-from typing import Final
 from unittest import TestCase
 
 from cars_manager_app.cars.enums import Statistics
 from cars_manager_app.cars.service import CarsService
-from cars_manager_app.data_loader.json_data import get_cars
+from .cars_service_utils import init_cars
 
 
 class TestCarsServiceGetCarStatistics(TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
-        FILE_BASE_PATH: Final = '\\'.join([os.path.dirname(os.path.dirname(__file__)), 'data\\'])
-        file = 'cars_test.json'
-        filename = f'{FILE_BASE_PATH}{file}'
-        cars = get_cars(filename)
-        cls.cars_service = CarsService(cars)
+        cls.cars_service = CarsService(init_cars('cars_test.json'))
 
     def test_when_cars_statistics_are_correct(self) -> None:
         cars_statistics = self.cars_service.get_car_statistics(Statistics.PRICE)
