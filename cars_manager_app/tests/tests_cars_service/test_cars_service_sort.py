@@ -1,6 +1,7 @@
-from ..utils import *
-from cars_manager_app.cars.enums import Sort
 import pytest
+
+from cars_manager_app.cars.enums import Sort
+from ..utils import *
 
 
 @pytest.mark.parametrize(

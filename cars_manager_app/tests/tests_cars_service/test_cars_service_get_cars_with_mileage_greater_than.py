@@ -1,6 +1,7 @@
+import pytest
+
 from cars_manager_app.cars.exception.cars import CarsServiceException
 from ..utils import mazda, fiat
-import pytest
 
 
 def test_when_mileage_is_not_correct(cars_service) -> None:

@@ -1,6 +1,4 @@
-import os
 import unittest
-from typing import Final
 from unittest import TestCase
 
 from cars_manager_app.cars.service import CarsService
