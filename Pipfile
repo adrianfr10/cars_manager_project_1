@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 pytest = "*"
 pytest-mock = "*"
+flask = "*"
+flask-restful = "*"
+gunicorn = "*"
 
 [dev-packages]
 
