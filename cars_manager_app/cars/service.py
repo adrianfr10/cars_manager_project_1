@@ -87,7 +87,7 @@ class CarsService:
         """
 
         return {
-            statistics_type: {
+            statistics_type.value.upper(): {
                 "avg": mean([getattr(car, statistics_type.value) for car in self.cars]),
                 "max": max([getattr(car, statistics_type.value) for car in self.cars]),
                 "min": min([getattr(car, statistics_type.value) for car in self.cars])
