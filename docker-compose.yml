@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+
+  # ===================================================================================
+  # NGINX CONFIGURATION
+  # ===================================================================================
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - '80:80'
+    networks:
+      - af-flask
+    depends_on:
+      - flask
+
+  # ===================================================================================
+  # WEB APP
+  # ===================================================================================
+  flask:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    command: gunicorn --bind 0.0.0.0:8000 --workers 4 'cars_manager_app.create_app:create_app()' --reload
+    volumes:
+      - ./:/webapp
+    ports:
+      - "8000:8000"
+    networks:
+      af-flask:
+        aliases:
+          - flask-app
+
+networks:
+  af-flask:
