@@ -1,10 +1,9 @@
-from .web.configuration import app
-from .routes import cars
-
+import logging
 
 from flask_restful import Api
 
-import logging
+from .routes import cars
+from .web.configuration import app
 
 
 def create_app():
