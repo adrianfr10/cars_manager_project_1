@@ -85,9 +85,11 @@ class CarsService:
         and min value for price and mileage.
         :return:
         """
+        if statistics_type not in Statistics:
+            raise ValueError("Wrong parameter name")
 
         return {
-            statistics_type: {
+            statistics_type.value.upper(): {
                 "avg": mean([getattr(car, statistics_type.value) for car in self.cars]),
                 "max": max([getattr(car, statistics_type.value) for car in self.cars]),
                 "min": min([getattr(car, statistics_type.value) for car in self.cars])
