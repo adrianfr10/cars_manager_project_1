@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "7337fb4b-9b9b-4936-a570-abf28996ad60",
+		"name": "cars_service_routes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25661645"
+	},
+	"item": [
+		{
+			"name": "Group cars by given params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:/cars/grouped/by_given_param/color-1"
+			},
+			"response": []
+		},
+		{
+			"name": "Cars with mileage greater than",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:/cars/grouped/by_mileage_threshold/1800"
+			},
+			"response": []
+		},
+		{
+			"name": "Count cars colors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/cars/counted/color"
+			},
+			"response": []
+		},
+		{
+			"name": "Most expensive cars from models",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/cars/most/expensive_models"
+			},
+			"response": []
+		},
+		{
+			"name": "Cars params statistics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost/cars/spec_stats/mileage"
+			},
+			"response": []
+		},
+		{
+			"name": "Cars with sorted components",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost/cars/with/sorted_components"
+			},
+			"response": []
+		},
+		{
+			"name": "Group cars by price range",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/cars/grouped/by_price/130000-300000"
+			},
+			"response": []
+		},
+		{
+			"name": "Most expensive car(s) ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost/cars/most/expensive"
+			},
+			"response": []
+		},
+		{
+			"name": "Group cars by components",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/cars/grouped/by_components"
+			},
+			"response": []
+		}
+	]
+}
