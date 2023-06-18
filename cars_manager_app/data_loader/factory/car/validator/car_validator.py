@@ -1,7 +1,9 @@
 from .validator import Validator
 from typing import Any
+from dataclasses import dataclass
 
 
+@dataclass
 class CarValidator(Validator):
 
     def validate(self, data: dict[str, Any]) -> dict[str, Any]:

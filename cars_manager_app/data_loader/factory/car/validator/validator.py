@@ -1,9 +1,12 @@
 from abc import ABC, abstractmethod
 from typing import Any
+from dataclasses import dataclass
 import re
 
 
+@dataclass
 class Validator(ABC):
+
     @abstractmethod
     def validate(self, data: dict[str, Any]) -> dict[str, Any]:
         pass
