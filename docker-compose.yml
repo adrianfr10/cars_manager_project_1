@@ -24,7 +24,7 @@ services:
       context: .
       dockerfile: Dockerfile
 
-    command: gunicorn --bind 0.0.0.0:8000 --workers 4 'shopping_manager.create_app:create_app()' --reload
+    command: gunicorn --bind 0.0.0.0:8000 --workers 4 'cars_manager_app.create_app:create_app()' --reload
     volumes:
       - ./:/webapp
     ports:

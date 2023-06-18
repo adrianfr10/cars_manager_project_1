@@ -9,6 +9,7 @@ pytest-mock = "*"
 flask = "*"
 flask-restful = "*"
 gunicorn = "*"
+simplejson = "*"
 
 [dev-packages]
 
