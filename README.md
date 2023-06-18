@@ -27,6 +27,9 @@ and type the following command into the terminal: pytest
 - Tests for every project layer
 
 ## Setup
+Firstly run the following pipenv commands for virtual environment:
+pipenv shell
+pipenv install
 Required installation of Docker software.
 (Optional) Postman installation for easily running routes
 
