@@ -5,5 +5,7 @@ from typing import Any
 
 class ToCarConverter(Converter):
 
-    def convert(self, data: dict[str, Any]) -> Any:
-        return Car.of(data)
+    def convert(self, data: list[dict[str, Any]]) -> list[Any]:
+        if not data:
+            raise ValueError("Invalid data")
+        return [Car.of(car_data) for car_data in data]

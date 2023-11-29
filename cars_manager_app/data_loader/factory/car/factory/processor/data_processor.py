@@ -10,5 +10,5 @@ class DataProcessor:
 
     def process(self, path: str) -> list[Any]:
         loader_data = self.data_loader.get_data(path)
-        validated_data = [self.validator.validate(data) for data in loader_data]
-        return [self.converter.convert(data) for data in validated_data]
+        validated_data = self.validator.validate(loader_data)
+        return self.converter.convert(validated_data)
