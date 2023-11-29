@@ -33,3 +33,7 @@ class Car:
 
     def has_price_within_range(self, price_from: Decimal, price_to: Decimal) -> bool:
         return price_from <= self.price <= price_to
+
+    def has_price(self, price: Decimal) -> bool:
+        return self.price == price
+
