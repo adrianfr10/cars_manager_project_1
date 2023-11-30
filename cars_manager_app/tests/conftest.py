@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 @pytest.fixture
 def cars_service() -> CarsService:
-    FILE_BASE_PATH: Final = '\\'.join([os.path.dirname(os.path.abspath(__file__)), 'data\\'])
+    FILE_BASE_PATH: Final = '\\'.join([os.path.dirname(os.path.abspath(__file__)), 'data_test\\'])
     file = 'cars_test.json'
     filename = f'{FILE_BASE_PATH}{file}'
     cars = DataProcessor(JsonCarFactory()).process(filename)
