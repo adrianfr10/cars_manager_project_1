@@ -1,43 +1,52 @@
-from flask import jsonify
 from decimal import Decimal
 
-from ..app import main
-from cars_manager_app.cars.enums import Sort, Statistics
+from flask import jsonify, abort, Blueprint
+from werkzeug.exceptions import BadRequest
 
-service = main()
+from cars_manager_app.cars.enums import Sort, Statistics
+from ..configuration import load_cars_service
+
+service = load_cars_service()
+
+cars_grouped_bp = Blueprint('cars/grouped', __name__)
+most_expensive_bp = Blueprint('cars/most/expensive', __name__)
 
 
 def create_routing(app):
     """
     -> /cars
         -> /grouped
-            -> /by_price
-            -> /by_mileage_range
-            -> /by_mileage_threshold
-            -> /by_given_param
-            -> /by_components
-        -> /most
-            -> /expensive
-            -> /expensive_models
+            -> /price
+            -> /mileage_range
+            -> /mileage_threshold
+            -> /given_param
+            -> /components
+        -> /most/expensive
+            -> /
+            -> /model
         -> /counted
-            -> color
-        -> /with
-            -> /sorted_components
-        -> /spec_stats
-            
+            -> /color
+        -> /sort
+            -> /components
+        -> /statistics
     """
 
-    @app.route('/cars/grouped/by_given_param/<string:param>-<string:desc>')
+
+    @app.errorhandler(BadRequest)
+    def handle_bad_request(e):
+        return jsonify({'error': 'Invalid request parameters'}), 400
+
+    @cars_grouped_bp.route('/given_param/<string:param>-<string:desc>')
     def sort(param: str, desc: str):
         param = param.upper()
         desc_bool = bool(desc)
 
         if param not in Sort.__members__:
-            return jsonify({'message': 'Invalid sort value'})
+            abort(400, description='Invalid sort value')
 
         return jsonify(service.sort(Sort[param], desc_bool))
 
-    @app.route('/cars/grouped/by_mileage_threshold/<int:max_mileage>')
+    @cars_grouped_bp.route('/mileage_threshold/<int:max_mileage>')
     def get_cars_with_mileage_greater_than(max_mileage: int):
         return jsonify(service.get_cars_with_mileage_greater_than(max_mileage))
 
@@ -45,36 +54,34 @@ def create_routing(app):
     def count_cars_with_color():
         return jsonify(service.count_cars_with_color())
 
-    @app.route('/cars/most/expensive_models')
+    @most_expensive_bp.route('/models')
     def get_most_expensive_cars_per_model():
         return jsonify(service.get_most_expensive_cars_per_model())
 
-    @app.route('/cars/spec_stats/<string:stat>')
+    @app.route('/cars/statistics/<string:stat>')
     def get_car_statistics(stat: str):
-        if stat in [member.value for member in Statistics]:
-            return jsonify(service.get_car_statistics(Statistics(stat)))
 
-        return jsonify({'message': 'Invalid statistics parameter'})
+        if stat not in [member.value for member in Statistics]:
+            abort(400, description='Wrong statistics type value')
 
-    @app.route('/cars/with/sorted_components')
+        return jsonify(service.get_car_statistics(Statistics(stat)))
+
+    @app.route('/cars/sort/components')
     def get_cars_with_sorted_components():
         return jsonify(service.get_cars_with_sorted_components())
 
-    @app.route('/cars/grouped/by_price/<string:min_value>-<string:max_value>')
+    @cars_grouped_bp.route('/price/<string:min_value>-<string:max_value>')
     def get_cars_with_price_within_range(min_value: str, max_value: str):
         decimal_min_val, decimal_max_val = Decimal(min_value), Decimal(max_value)
 
         if decimal_min_val > decimal_max_val:
-            return jsonify({'message': "Wrong parameters"})
-
+            abort(400, description='Min value cannot be greater than max value')
         return jsonify(service.get_cars_with_price_within_range(decimal_min_val, decimal_max_val))
 
-    @app.route('/cars/most/expensive')
+    @most_expensive_bp.route('/')
     def get_most_expensive():
         return jsonify(service.get_most_expensive())
 
-    @app.route('/cars/grouped/by_components')
+    @cars_grouped_bp.route('/components')
     def get_cars_per_components():
         return jsonify(service.get_cars_per_components())
-
-
