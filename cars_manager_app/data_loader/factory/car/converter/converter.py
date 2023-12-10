@@ -6,4 +6,3 @@ class Converter(ABC):
     @abstractmethod
     def convert(self, data: dict[str, Any]) -> Any:
         pass
-    

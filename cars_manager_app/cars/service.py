@@ -16,17 +16,13 @@ class CarsService:
 
     # -----------------------------------------------------------------------------------------------
 
-    def sort(self,sort_criteria: Sort, descending: bool) -> list[Car]:
-        if not isinstance(sort_criteria, Sort):
-            raise AttributeError("Invalid sort type. Please use Sort enum values.")
-
+    def sort(self, comparison_func: Callable, descending: bool) -> list[Car]:
         if not isinstance(descending, bool):
             raise ValueError("Descending parameter must be a boolean value.")
-        comparison_func = self._get_comparison_func(sort_criteria)
         return sorted(self.cars, key=comparison_func, reverse=descending)
 
     @staticmethod
-    def _get_comparison_func(sort_by: Sort) -> Callable[[Car], Any]:
+    def get_comparison_func(sort_by: Sort) -> Callable[[Car], Any]:
         """
         Returns a comparison function based on the sort criteria and order.
         :param sort_by: Attribute to sort by (e.g., "color", "mileage", "model", "price").
