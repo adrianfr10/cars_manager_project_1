@@ -1,0 +1,119 @@
+{
+	"info": {
+		"_postman_id": "cbf88e65-5ba5-48b2-8d6d-31b331f1e323",
+		"name": "cars_web_app_routes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25661645"
+	},
+	"item": [
+		{
+			"name": "cars_service_routes",
+			"item": [
+				{
+					"name": "[3] Group cars by given params",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:/cars/grouped/by_given_param/color-1"
+					},
+					"response": []
+				},
+				{
+					"name": "[4] Cars with mileage greater than",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:/cars/grouped/by_mileage_threshold/1800"
+					},
+					"response": []
+				},
+				{
+					"name": "[5] Count cars colors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/cars/counted/color"
+					},
+					"response": []
+				},
+				{
+					"name": "[6] Most expensive cars from models",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/cars/most/expensive_models"
+					},
+					"response": []
+				},
+				{
+					"name": "[7] Cars with sorted components",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost/cars/with/sorted_components"
+					},
+					"response": []
+				},
+				{
+					"name": "[8] Cars statistics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost/cars/spec_stats/mileage"
+					},
+					"response": []
+				},
+				{
+					"name": "[9] Group cars by price range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/cars/grouped/by_price/130000-300000"
+					},
+					"response": []
+				},
+				{
+					"name": "[10] Most expensive car(s)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost/cars/most/expensive"
+					},
+					"response": []
+				},
+				{
+					"name": "[11] Group cars by components",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/cars/grouped/by_components"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "security_routes",
+			"item": [
+				{
+					"name": "[2]Verify token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost/verify"
+					},
+					"response": []
+				},
+				{
+					"name": "[1] Register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost/register"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
