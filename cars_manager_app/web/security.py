@@ -8,6 +8,11 @@ from cars_manager_app.web.configuration import app
 from cars_manager_app.email.configuration import MailConfig
 
 def check_token(token) -> bool:
+    """
+    This function checks if the token is not expired
+    :param token:
+    :return:
+    """
     fn = os.path.abspath(os.path.join(os.path.dirname(__file__), 'tokens.json'))
     with open(fn, 'r') as file:
         data = json.load(file)
@@ -60,6 +65,11 @@ def register_user():
     return jsonify({"message": "Email with token sent."})
 
 def token_required(route_function):
+    """
+    This is a decorator for routes that require the token
+    :param route_function:
+    :return:
+    """
     def wrapper(*args, **kwargs):
         token = request.args.get('token')
         if not token:

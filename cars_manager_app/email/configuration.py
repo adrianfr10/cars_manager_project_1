@@ -1,14 +1,29 @@
 from flask_mail import Mail, Message
 
 class MailConfig:
+    """
+    This class is used for email configuration with Flask
+    """
     mail = None
 
     @classmethod
     def init(cls, app) -> None:
+        """
+        This method is used to initialize mail attribute of the class, that is set to None
+        :param app:
+        :return:
+        """
         cls.mail = Mail(app)
 
     @classmethod
     def send_register_token(cls,sender_mail: str, recipient_email: str, token: str) -> None:
+        """
+        This method preforms sending an email that contains a register token, to specified recipients
+        :param sender_mail:
+        :param recipient_email:
+        :param token:
+        :return:
+        """
         if not cls.mail:
             raise Exception('Mail not initialized. Call init() first.')
 

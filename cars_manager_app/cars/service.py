@@ -8,6 +8,9 @@ from .model import Car
 
 
 class CarsService:
+    """
+    This class is a service class for managing car-related operations
+    """
 
     def __init__(self, cars: list[Car]) -> None:
         if not cars:
@@ -17,6 +20,12 @@ class CarsService:
     # -----------------------------------------------------------------------------------------------
 
     def sort(self, comparison_func: Callable, descending: bool) -> list[Car]:
+        """
+        Method sorts a collection of cars by one of given parameter: color, mileage, model or price
+        :param comparison_func:
+        :param descending:
+        :return:
+        """
         if not isinstance(descending, bool):
             raise ValueError("Descending parameter must be a boolean value.")
         return sorted(self.cars, key=comparison_func, reverse=descending)

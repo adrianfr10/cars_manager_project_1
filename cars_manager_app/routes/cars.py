@@ -15,6 +15,10 @@ most_expensive_bp = Blueprint('cars/most/expensive', __name__)
 
 def create_routing(app):
     """
+    This function is used to create routing for CarsService methods.
+    Arguments:
+    app    -    an instance of Flask application
+    Below, the structure is specified.
     -> /cars
         -> /grouped
             -> /price

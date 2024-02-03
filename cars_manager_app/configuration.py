@@ -6,6 +6,10 @@ from cars_manager_app.data_loader.factory.car.factory.processor.data_processor i
 
 
 def load_cars_service() -> CarsService:
+    """
+    This function is used to process the data with factory and load it into the CarsService
+    :return:
+    """
     current_path = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(current_path, '..', 'data_test', 'cars_test.json')
     cars = DataProcessor(JsonCarFactory()).process(file_path)

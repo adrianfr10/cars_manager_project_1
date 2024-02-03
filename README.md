@@ -20,6 +20,8 @@ implement them in a simple web service application.
 - Python 3.12
 - Flask
 - pytest
+- Docker
+- pipenv
 
 ## Features
 - Flask framework used for web

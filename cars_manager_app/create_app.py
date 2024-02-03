@@ -12,6 +12,10 @@ from .web.configuration import app
 
 
 def create_app():
+    """
+    This function is used to create Flask web app and configure it
+    :return:
+    """
 
     with app.app_context():
 
